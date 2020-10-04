@@ -7,7 +7,7 @@ const Search = (props) => {
     <div>
       <Autocomplete
         options={props.countries}
-        onChange={(event, value) => props.setSelectedCountry(value.Slug)}
+        onChange={(event, value) => props.setSelectedCountry(value.Country)}
         getOptionLabel={(option) => option.Country}
         renderInput={(params) => (
           <TextField {...params} variant="outlined" label="Countries" />

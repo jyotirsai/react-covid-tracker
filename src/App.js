@@ -8,7 +8,7 @@ import { Typography } from "@material-ui/core";
 const App = () => {
   const [countries, setCountries] = useState([]);
   const [summary, setSummary] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState("canada");
+  const [selectedCountry, setSelectedCountry] = useState("Canada");
 
   // fetch data
   useEffect(() => {

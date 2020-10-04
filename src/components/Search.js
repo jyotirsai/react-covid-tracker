@@ -1,9 +1,18 @@
 import React from "react";
+import { TextField } from "@material-ui/core";
+import { Autocomplete } from "@material-ui/lab";
 
-const Search = () => {
+const Search = (props) => {
   return (
     <div>
-      <h2>Search Functionality</h2>
+      <Autocomplete
+        options={props.countries}
+        onChange={(event, value) => props.setSelectedCountry(value.Slug)}
+        getOptionLabel={(option) => option.Country}
+        renderInput={(params) => (
+          <TextField {...params} variant="outlined" label="Countries" />
+        )}
+      />
     </div>
   );
 };

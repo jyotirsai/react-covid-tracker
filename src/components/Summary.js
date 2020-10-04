@@ -1,11 +1,30 @@
 import React from "react";
 import { Typography, Grid, Paper, Card } from "@material-ui/core";
+import { makeStyles, StylesContext } from "@material-ui/styles";
+
+// styles
+const useStyles = makeStyles({
+  cardStyles: {
+    padding: 5,
+    marginTop: 10,
+  },
+  paperStyles: {
+    padding: 20,
+    marginTop: 10,
+  },
+});
 
 const Summary = (props) => {
+  // initialize styles
+  const classes = useStyles();
+
   // initialize data
   let totalConfirmed = "";
   let totalRecovered = "";
   let totalDeaths = "";
+  let globalTotalConfirmed = "";
+  let globalTotalRecovered = "";
+  let globalTotalDeaths = "";
 
   // Check if data is undefined, if not proceed to find data associated with Country
   if (typeof props.summary.Countries !== "undefined") {
@@ -19,18 +38,37 @@ const Summary = (props) => {
   } else {
     console.log("loading");
   }
+
+  // Return global data
+  if (typeof props.summary.Global !== "undefined") {
+    globalTotalConfirmed = props.summary.Global.TotalConfirmed;
+    globalTotalDeaths = props.summary.Global.TotalDeaths;
+    globalTotalRecovered = props.summary.Global.TotalRecovered;
+  } else {
+    console.log("loading");
+  }
+
   return (
     <div>
-      <Paper>
+      <Paper className={classes.paperStyles}>
         <Typography variant="h4">Summary</Typography>
         <Grid container spacing={3}>
           <Grid item>
-            <Card>
+            <Card className={classes.cardStyles}>
               <Typography variant="h6">Worldwide</Typography>
+              <Typography variant="subtitle1">
+                Total Confirmed Cases: {globalTotalConfirmed}
+              </Typography>
+              <Typography variant="subtitle1">
+                Total Recovered Cases: {globalTotalRecovered}
+              </Typography>
+              <Typography variant="subtitle1">
+                Total Confirmed Deaths: {globalTotalDeaths}
+              </Typography>
             </Card>
           </Grid>
           <Grid item>
-            <Card>
+            <Card className={classes.cardStyles}>
               <Typography variant="h6">
                 Country: {props.selectedCountry}
               </Typography>
@@ -44,7 +82,7 @@ const Summary = (props) => {
               </Typography>
               <Typography variant="subtitle1">
                 {" "}
-                Total Deaths: {totalDeaths}
+                Total Confirmed Deaths: {totalDeaths}
               </Typography>
             </Card>
           </Grid>

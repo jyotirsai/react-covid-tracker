@@ -24,7 +24,7 @@ const App = () => {
 
   return (
     <div>
-      <Typography variant="h1">Covid-19 Tracker</Typography>
+      <Typography variant="h1">COVID-19 Tracker</Typography>
       <Search countries={countries} setSelectedCountry={setSelectedCountry} />
       <Summary selectedCountry={selectedCountry} summary={summary} />
       <Plots />

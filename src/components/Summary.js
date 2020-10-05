@@ -7,11 +7,10 @@ import Moment from "react-moment";
 const useStyles = makeStyles({
   cardStyles: {
     padding: 10,
-    marginTop: 10,
+    marginTop: 30,
   },
-  paperStyles: {
-    padding: 20,
-    marginTop: 10,
+  cardText: {
+    marginTop: 2,
   },
 });
 
@@ -61,61 +60,58 @@ const Summary = (props) => {
 
   return (
     <div>
-      <Paper className={classes.paperStyles}>
-        <Typography variant="h4">Summary</Typography>
-        <Grid container spacing={2} justify="center" align="center">
-          <Grid item>
-            <Card className={classes.cardStyles}>
-              <Typography variant="h6">Worldwide</Typography>
-              <Typography variant="subtitle1">
-                Total Confirmed Cases: {globalTotalConfirmed}
-              </Typography>
-              <Typography variant="subtitle1">
-                Total Recovered Cases: {globalTotalRecovered}
-              </Typography>
-              <Typography variant="subtitle1">
-                Total Confirmed Deaths: {globalTotalDeaths}
-              </Typography>
-            </Card>
-          </Grid>
-          <Grid item>
-            <Card className={classes.cardStyles}>
-              <Typography variant="h6">
-                Country: {props.selectedCountry}
-              </Typography>
-              <Typography variant="subtitle1">
-                {" "}
-                Total Confirmed Cases: {totalConfirmed}
-              </Typography>
-              <Typography variant="subtitle1">
-                {" "}
-                Total Recovered Cases: {totalRecovered}
-              </Typography>
-              <Typography variant="subtitle1">
-                {" "}
-                Total Confirmed Deaths: {totalDeaths}
-              </Typography>
-            </Card>
-          </Grid>
-          <Grid item>
-            <Card className={classes.cardStyles}>
-              <Typography variant="h6">
-                As of <Moment format="MMMM Do, YYYY:">{date}</Moment>
-              </Typography>
-              <Typography variant="body2">
-                {" "}
-                There has been {totalNewCases} new cases in <br />{" "}
-                {props.selectedCountry} compared to {globalNewCases} worldwide.
-              </Typography>
-              <Typography variant="body2">
-                {totalNewDeaths} new deaths were reported in{" "}
-                {props.selectedCountry} <br /> compared to {globalNewDeaths} new
-                deaths worldwide.
-              </Typography>
-            </Card>
-          </Grid>
+      <Grid container spacing={2} justify="center" align="center">
+        <Grid item>
+          <Card className={classes.cardStyles}>
+            <Typography variant="h6">Worldwide</Typography>
+            <Typography variant="subtitle1">
+              Total Confirmed Cases: {globalTotalConfirmed}
+            </Typography>
+            <Typography variant="subtitle1">
+              Total Recovered Cases: {globalTotalRecovered}
+            </Typography>
+            <Typography variant="subtitle1">
+              Total Confirmed Deaths: {globalTotalDeaths}
+            </Typography>
+          </Card>
         </Grid>
-      </Paper>
+        <Grid item>
+          <Card className={classes.cardStyles}>
+            <Typography variant="h6">
+              Country: {props.selectedCountry}
+            </Typography>
+            <Typography variant="subtitle1">
+              {" "}
+              Total Confirmed Cases: {totalConfirmed}
+            </Typography>
+            <Typography variant="subtitle1">
+              {" "}
+              Total Recovered Cases: {totalRecovered}
+            </Typography>
+            <Typography variant="subtitle1">
+              {" "}
+              Total Confirmed Deaths: {totalDeaths}
+            </Typography>
+          </Card>
+        </Grid>
+        <Grid item>
+          <Card className={classes.cardStyles}>
+            <Typography variant="h6">
+              As of <Moment format="MMMM Do, YYYY:">{date}</Moment>
+            </Typography>
+            <Typography variant="body2" className={classes.cardText}>
+              {" "}
+              There has been {totalNewCases} new case(s) in <br />{" "}
+              {props.selectedCountry} compared to {globalNewCases} worldwide.
+            </Typography>
+            <Typography variant="body2">
+              {totalNewDeaths} new death(s) were reported in{" "}
+              {props.selectedCountry} <br /> compared to {globalNewDeaths} new
+              death(s) worldwide.
+            </Typography>
+          </Card>
+        </Grid>
+      </Grid>
     </div>
   );
 };

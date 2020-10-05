@@ -1,11 +1,11 @@
 import React from "react";
 import { Typography, Grid, Paper, Card } from "@material-ui/core";
-import { makeStyles, StylesContext } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/styles";
 
 // styles
 const useStyles = makeStyles({
   cardStyles: {
-    padding: 5,
+    padding: 10,
     marginTop: 10,
   },
   paperStyles: {
@@ -25,6 +25,7 @@ const Summary = (props) => {
   let globalTotalConfirmed = "";
   let globalTotalRecovered = "";
   let globalTotalDeaths = "";
+  let date = "";
 
   // Check if data is undefined, if not proceed to find data associated with Country
   if (typeof props.summary.Countries !== "undefined") {
@@ -33,6 +34,7 @@ const Summary = (props) => {
         totalConfirmed = props.summary.Countries[i].TotalConfirmed;
         totalRecovered = props.summary.Countries[i].TotalRecovered;
         totalDeaths = props.summary.Countries[i].TotalDeaths;
+        date = props.summary.Countries[i].Date;
       }
     }
   } else {
@@ -52,7 +54,7 @@ const Summary = (props) => {
     <div>
       <Paper className={classes.paperStyles}>
         <Typography variant="h4">Summary</Typography>
-        <Grid container spacing={3}>
+        <Grid container spacing={3} justify="center">
           <Grid item>
             <Card className={classes.cardStyles}>
               <Typography variant="h6">Worldwide</Typography>
@@ -72,6 +74,23 @@ const Summary = (props) => {
               <Typography variant="h6">
                 Country: {props.selectedCountry}
               </Typography>
+              <Typography variant="subtitle1">
+                {" "}
+                Total Confirmed Cases: {totalConfirmed}
+              </Typography>
+              <Typography variant="subtitle1">
+                {" "}
+                Total Recovered Cases: {totalRecovered}
+              </Typography>
+              <Typography variant="subtitle1">
+                {" "}
+                Total Confirmed Deaths: {totalDeaths}
+              </Typography>
+            </Card>
+          </Grid>
+          <Grid item>
+            <Card className={classes.cardStyles}>
+              <Typography variant="h6">As of {date}</Typography>
               <Typography variant="subtitle1">
                 {" "}
                 Total Confirmed Cases: {totalConfirmed}

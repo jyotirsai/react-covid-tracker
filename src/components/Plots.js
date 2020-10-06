@@ -5,6 +5,7 @@ import { PieChart, Pie, Tooltip } from "recharts";
 const Plots = (props) => {
   console.log(props.summary);
   let data01 = [{}];
+  let data02 = [{}];
   let globalTotalConfirmed = "";
   let globalTotalRecovered = "";
   let globalTotalDeaths = "";
@@ -18,6 +19,12 @@ const Plots = (props) => {
       { name: "TotalConfirmed:", value: globalTotalConfirmed },
       { name: "TotalRecovered:", value: globalTotalRecovered },
       { name: "TotalDeaths:", value: globalTotalDeaths },
+    ];
+
+    data02 = [
+      { name: "TotalConfirmed:", value: "Total Confirmed" },
+      { name: "TotalRecovered:", value: "Total Recovered" },
+      { name: "TotalDeaths:", value: "Total Deaths" },
     ];
   } else {
     console.log("loading");
@@ -33,15 +40,15 @@ const Plots = (props) => {
           outerRadius={80}
           fill="#8884d8"
           data={data01}
+          label
         />
         <Pie
-          dataKey="name"
+          dataKey="value"
           cx={200}
           cy={200}
           outerRadius={80}
           fill="#8884d8"
-          data={data01}
-          label
+          data={data02}
         />
         <Tooltip />
       </PieChart>

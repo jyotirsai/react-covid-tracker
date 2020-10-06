@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Grid, Paper, Card } from "@material-ui/core";
+import { Typography, Grid, Card } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import Moment from "react-moment";
 

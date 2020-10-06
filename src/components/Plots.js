@@ -1,33 +1,22 @@
 import React from "react";
-import {
-  PieChart,
-  Pie,
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  Tooltip,
-} from "recharts";
+import { Grid } from "@material-ui/core";
+import { PieChart, Pie, Tooltip } from "recharts";
 
 const Plots = (props) => {
-  let array = [];
-
-  Object.entries(props.confirmedData).forEach((entry) => {
-    let [key, value] = entry;
-    let obj = { Cases: value["Cases"], Date: key };
-    array.push(obj);
-  });
-
-  console.log(array);
-
+  console.log(props.summary);
   return (
     <div>
-      <AreaChart width={700} height={400} data={array}>
-        <XAxis dataKey="Date" />
-        <YAxis />
+      <PieChart width={800} height={400}>
+        <Pie
+          dataKey="value"
+          cx={200}
+          cy={200}
+          outerRadius={80}
+          fill="#8884d8"
+          label
+        />
         <Tooltip />
-        <Area type="monotone" dataKey="Cases" fill="#8884d8" />
-      </AreaChart>
+      </PieChart>
     </div>
   );
 };

@@ -1,14 +1,15 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
-import { PieChart, Pie, Tooltip } from "recharts";
+import { PieChart, Pie, Tooltip, Legend, Cell } from "recharts";
 
 const Plots = (props) => {
   console.log(props.summary);
   let data01 = [{}];
-  let data02 = [{}];
   let globalTotalConfirmed = "";
   let globalTotalRecovered = "";
   let globalTotalDeaths = "";
+
+  const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
 
   if (typeof props.summary.Global !== "undefined") {
     globalTotalConfirmed = props.summary.Global.TotalConfirmed;
@@ -16,15 +17,9 @@ const Plots = (props) => {
     globalTotalRecovered = props.summary.Global.TotalRecovered;
 
     data01 = [
-      { name: "TotalConfirmed:", value: globalTotalConfirmed },
-      { name: "TotalRecovered:", value: globalTotalRecovered },
-      { name: "TotalDeaths:", value: globalTotalDeaths },
-    ];
-
-    data02 = [
-      { name: "TotalConfirmed:", value: "Total Confirmed" },
-      { name: "TotalRecovered:", value: "Total Recovered" },
-      { name: "TotalDeaths:", value: "Total Deaths" },
+      { name: "Total Confirmed", value: globalTotalConfirmed },
+      { name: "Total Recovered", value: globalTotalRecovered },
+      { name: "Total Deaths", value: globalTotalDeaths },
     ];
   } else {
     console.log("loading");
@@ -41,16 +36,13 @@ const Plots = (props) => {
           fill="#8884d8"
           data={data01}
           label
-        />
-        <Pie
-          dataKey="value"
-          cx={200}
-          cy={200}
-          outerRadius={80}
-          fill="#8884d8"
-          data={data02}
-        />
+        >
+          {data01.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
         <Tooltip />
+        <Legend />
       </PieChart>
     </div>
   );

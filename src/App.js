@@ -27,7 +27,7 @@ const App = () => {
       <Typography variant="h1">COVID-19 Tracker</Typography>
       <Search countries={countries} setSelectedCountry={setSelectedCountry} />
       <Summary selectedCountry={selectedCountry} summary={summary} />
-      <Plots summary={summary} />
+      <Plots summary={summary} selectedCountry={selectedCountry} />
     </div>
   );
 };
